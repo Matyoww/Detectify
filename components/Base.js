@@ -1,9 +1,12 @@
-import React, { Component } from 'react';
 import { Container, Header, Footer, FooterTab, Body, Right, Button, Icon, Title, Segment, Content, Text } from 'native-base';
-export default class SegmentOutsideHeaderExample extends Component {
+import React, { Component } from 'react';
+import { StyleSheet, Image } from 'react-native';
+import News from './News';
+import Checker from './Checker';
+export default class Base extends Component {
 
   state = {
-    active: 1
+    active: 2
   }
 
   selectComponent = (active) => () => this.setState({active})
@@ -13,70 +16,39 @@ export default class SegmentOutsideHeaderExample extends Component {
 
   _renderComponent = () => {
     if(this.state.active === 1)
-      return <Text>test1</Text>
+      return <Checker />
     else if(this.state.active === 2)
-      return <Text>test2</Text>
+      return <News />
     else
-      return <Text>test3</Text>
+      return <Image source={require('./favicon.png')} />
   }
 
   render() {
     return (
       <Container>
 
-        {/*HEADER*/}
-
-        <Header hasSegment>
-          <Body>
-            <Title>Detectify</Title>
-          </Body>
-          <Right>
-            <Button transparent>
-              <Icon name="search" />
-            </Button>
-          </Right>
-        </Header>
-
-        {/*END OF HEADER*/}
-
-        <Segment>
-          <Button first 
-            active={this.state.active === 1}
-            onPress={this.selectComponent(1)}
-          >
-            <Text>News</Text>
-          </Button>
-          <Button 
-            active={this.state.active === 2}
-            onPress={this.selectComponent(2)}
-          >
-            <Text>Sports</Text>
-          </Button>
-          <Button last 
-            active={this.state.active === 3}
-            onPress={this.selectComponent(3)}
-          >
-            <Text>Entertainment</Text>
-          </Button>
-        </Segment>
-
-        {/*CONTENT OF EACH SEGMENT*/}
-
-        <Content padder>
-          {this._renderComponent()}
-        </Content>
+        {this._renderComponent()}
 
         {/*FOOTER*/}
 
         <Footer>
           <FooterTab>
-            <Button>
-              <Icon name="paper" />
+            <Button
+                active = {this.state.active === 1}
+                onPress = {this.selectComponent(1)}
+            >
+              <Icon name="eye" />
             </Button>
-            <Button active>
-              <Icon active name="glasses" />
+            <Button 
+                active = {this.state.active === 2}
+                onPress = {this.selectComponent(2)}
+            >
+              <Icon active name="barcode" />
             </Button>
-            <Button>
+            <Button
+                active = {this.state.active === 3}
+                onPress = {this.selectComponent(3)}
+            >
               <Icon name="settings" />
             </Button>
           </FooterTab>
@@ -87,3 +59,13 @@ export default class SegmentOutsideHeaderExample extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+    red: {
+        color: 'red',
+    },
+    
+    blue: {
+        color: 'blue',
+    },
+});
