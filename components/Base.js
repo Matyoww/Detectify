@@ -3,61 +3,64 @@ import React, { Component } from 'react';
 import { StyleSheet, Image } from 'react-native';
 import News from './News';
 import Checker from './Checker';
+import Testtry from './Testtry';
+
 export default class Base extends Component {
 
-  state = {
-    active: 2
-  }
+	state = {
+		active: 2
+	}
 
-  selectComponent = (active) => () => this.setState({active})
+  	selectComponent = (active) => () => this.setState({active})
 
-  // write a function to change content
-  // changeContent () {}
+  	// write a function to change content
+  	// changeContent () {}
 
-  _renderComponent = () => {
-    if(this.state.active === 1)
-      return <Checker />
-    else if(this.state.active === 2)
-      return <News />
-    else
-      return <Image source={require('./favicon.png')} />
-  }
+  	_renderComponent = () => {
+		if(this.state.active === 1)
+		return <Checker />
+		else if(this.state.active === 2)
+		return <News />
+		else
+		return <Testtry />
+  	}
 
-  render() {
-    return (
-      <Container>
+	render() {
+		return (
+			<Container>
 
-        {this._renderComponent()}
+			{this._renderComponent()}
 
-        {/*FOOTER*/}
+			{/*FOOTER*/}
 
-        <Footer>
-          <FooterTab>
-            <Button
-                active = {this.state.active === 1}
-                onPress = {this.selectComponent(1)}
-            >
-              <Icon name="eye" />
-            </Button>
-            <Button 
-                active = {this.state.active === 2}
-                onPress = {this.selectComponent(2)}
-            >
-              <Icon active name="barcode" />
-            </Button>
-            <Button
-                active = {this.state.active === 3}
-                onPress = {this.selectComponent(3)}
-            >
-              <Icon name="settings" />
-            </Button>
-          </FooterTab>
-        </Footer>
+			<Footer>
+				<FooterTab>
+					<Button
+						active = {this.state.active === 1}
+						onPress = {this.selectComponent(1)}
+					>
+						<Icon name="eye" />
+					</Button>
+					<Button 
+						active = {this.state.active === 2}
+						onPress = {this.selectComponent(2)}
+					>
+						<Icon active name="barcode" />
+					</Button>
+					<Button
+						active = {this.state.active === 3}
+						onPress = {this.selectComponent(3)}
+					>
+						<Icon name="settings" />
+					</Button>
+				</FooterTab>
+			</Footer>
 
-        {/*END OF FOOTER*/}
-      </Container>
-    );
-  }
+			{/*END OF FOOTER*/}
+			
+			</Container>
+		);
+  	}
 }
 
 const styles = StyleSheet.create({
